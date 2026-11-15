@@ -1,95 +1,271 @@
-# Ubuntu i3 desktop configuration
+# Ubuntu i3 desktop
 
-Snapshot of this machine's existing Ubuntu/X11 i3 setup, collected on 2026-11-15. All 46 collected files are independent, unmodified copies; collecting them did not change the live desktop. Original permissions are preserved. No installer has been run.
+Ubuntu/X11 i3 configuration with shortcuts, Spacegray Polybar, Rofi menus, scratchpad, Dunst, wallpapers, lock screen and Terminator settings.
 
-For the complete shortcut reference, mouse sensitivity commands, and ordered setup steps, see [New computer setup](NEW_COMPUTER_SETUP.md).
+## 1. Install programs
 
-## Contents
+Run on the new Ubuntu computer before logging into i3; package names depend on the Ubuntu release.
 
-| Repository path | Restore destination | Purpose |
-| --- | --- | --- |
-| `config/i3/` | `~/.config/i3/` | Window manager, helpers, lock-screen image |
-| `config/polybar/` | `~/.config/polybar/` | Active Spacegray theme, alternate theme, launcher, scratchpad/network helpers |
-| `config/rofi/` | `~/.config/rofi/` | Application launcher and menu themes |
-| `local/share/rofi/themes/` | `~/.local/share/rofi/themes/` | Referenced Arc theme |
-| `config/dunst/` | `~/.config/dunst/` | Notification settings |
-| `config/gtk-3.0/settings.ini` | `~/.config/gtk-3.0/settings.ini` | Optional GTK appearance |
-| `config/terminator/config` | `~/.config/terminator/config` | Optional terminal appearance |
-| `screenlayout/monitors.sh` | `~/.screenlayout/monitors.sh` | Machine-specific monitor arrangement |
-| `home/.fehbg`, `home/.Xresources` | `~/.fehbg`, `~/.Xresources` | Wallpaper restore, cursor and DPI settings |
-| `assets/wallpaper.jpg` | `~/Pictures/Wallpapers/wallpaper.jpg` | Referenced wallpaper |
-| `archive/i3/i3blocks.conf` | Optional: `~/.config/i3/i3blocks.conf` | Legacy bar; inactive in current i3 config |
+```sh
+sudo apt update
+sudo apt install git i3-wm i3status i3lock xterm polybar rofi dunst terminator \
+  feh flameshot dex xss-lock network-manager network-manager-gnome \
+  pulseaudio-utils x11-xserver-utils x11-xkb-utils xserver-xorg-input-libinput \
+  xinput python3 fontconfig \
+  fonts-noto-core fonts-noto-color-emoji fonts-dejavu-core fonts-dejavu-mono \
+  fonts-symbola arc-theme papirus-icon-theme scrot imagemagick
+```
 
-`collection-manifest.json` records each original path (relative to home), destination, SHA-256 checksum, and permission mode. `I3_CONFIG_COLLECTION_GUIDE.md` is the original collection brief; actual collected configs take precedence over its expectations.
+Install Symbols Nerd Font Mono and Qogir/Qogir-dark icons separately for matching glyphs and appearance.
 
-Backups, logs, caches, font binaries, credentials, third-party Git clones, and unrelated home files were excluded. Optional GTK4, GTK2, LXAppearance, Flameshot and fontconfig settings were absent. Existing customized Dunst, GTK3 and Terminator settings were included. No symlinks were encountered among collected files.
+```sh
+fc-cache -f
+fc-list : family | sort -u
+```
 
-## Current behavior
+The custom lock requires [i3lock-color](https://github.com/Raymo111/i3lock-color) flags at `/usr/bin/i3lock`; the screenshot locker requires ImageMagick's `magick` command.
 
-`config/polybar/launch.sh` explicitly loads `spacegray.ini`, bar `main`, on **DP-2 only**. `config.ini` is an alternate theme. The active bar shows the launcher, focused window title, hidden windows, date/time and power button; several other modules are defined but disabled.
+```sh
+/usr/bin/i3lock --help 2>&1 | less
+command -v magick
+```
 
-| Shortcut | Action |
-| --- | --- |
-| Alt + Return | Terminator |
-| Alt + D | Rofi apps on DP-2 |
-| Alt + H/J/K/L | Focus left/down/up/right |
-| Alt + Shift + H/J/K/L | Move window |
-| Alt + Ctrl + H/J/K/L | Focus another monitor |
-| Alt + Ctrl + Shift + H/J/K/L | Move window to another monitor |
-| Alt + R | Resize mode (H/J/K/L or arrows; Escape exits) |
-| Super + H | Hide window in scratchpad |
-| Super + Shift + H | Select/restore a hidden window |
-| Super + L | Custom image/clock lock screen |
-| Super + Shift + S | Flameshot selection |
-| Super + Space | Switch US/Georgian keyboard layout |
+## 2. Copy configuration
 
-The custom `lock.sh` sets DPMS to turn displays off after 10 seconds of inactivity, restoring prior DPMS settings on exit. The power menu instead prefers `blur-lock`, which captures and blurs a screenshot. Suspend locking uses the separate `xss-lock -- i3lock --nofork` startup command. These behaviors are preserved as found.
-
-## Dependencies
-
-These names come from the collected configs and scripts; install matching packages for the target distribution. This snapshot does not install software or pin an Ubuntu release.
-
-- Main desktop: i3/i3-msg, Polybar, Rofi, Dunst, Terminator, feh, Flameshot, dex, xss-lock, nm-applet, NetworkManager/nmcli, Python 3 (standard library only for scratchpad), Bash and standard shell tools.
-- X11 tools: xrandr, xrdb, xset (typically `x11-xserver-utils`); setxkbmap (`x11-xkb-utils`); xinput.
-- Audio: `pactl` (typically `pulseaudio-utils`) with a compatible PulseAudio/PipeWire server; systemd commands are used by the power menu.
-- Custom lock: **i3lock-color-compatible `/usr/bin/i3lock`**, supporting the flags in `lock.sh`. The installed dpkg record says i3lock 2.16-1, which alone does not establish support for those custom flags. The power-menu `blur-lock` additionally needs `scrot`, ImageMagick's `magick`, and `shred`.
-- Appearance: Noto Sans, DejaVu Sans Mono, Symbols Nerd Font Mono; alternate bar also names DejaVu Sans and Symbola. GTK uses Arc-Dark/Papirus-Dark/Adwaita; Rofi/Dunst name Qogir or Qogir-dark. Install themes/fonts separately; no font binaries or system icon trees were copied. Rofi power menus disable icons, but Dunst has absolute Qogir icon paths.
-- Optional/legacy helpers: i3blocks, Perl, `mpstat` (sysstat), sensors (lm-sensors), acpi, iproute2, pavucontrol, brightnessctl, notify-send, powerprofilesctl, curl/jq (weather), and pacmd for the older PulseAudio switching branch. Legacy i3blocks launchers also name Firefox and Thunar. `keyhint` needs Yad and an EndeavourOS-specific library; it is not portable as collected.
-
-Locally reported versions at collection: i3 4.25.1, Polybar 3.7.2, Rofi 2.0.0, Dunst 1.12.2, feh 3.11.2, Terminator 2.1.5. These describe the source machine, not a tested minimum-version matrix.
-
-## Adapt before restoring
-
-Edit repository copies for your target machine before copying them into place:
-
-1. Replace `/home/vano-iniashvili` in `home/.fehbg`, `config/polybar/config.ini`, and `config/polybar/spacegray.ini` with your home path or appropriate shell expansion. Original paths remain here for fidelity.
-2. Update output names and modes in `screenlayout/monitors.sh`, i3 workspace assignments/Rofi monitor, and the Polybar launcher's `MONITOR`. The script uses HDMI-1-0 at 0x0, DVI-D-1-0 at 1925x0, DP-2 at 0x1080, HDMI-3 at 1925x1080. All are 1920x1080; DP-2 is 60 Hz, the others 74.97 Hz. DP-1/HDMI-2 are disabled. No output is marked primary by this script. GPU identities in the original guide were not independently verified.
-3. Adjust the exact Xiaomi mouse device name and libinput values in `mouse-settings.sh`, keyboard layout in i3, and DPI (84)/cursor size (24) in `.Xresources`.
-4. Install required fonts and themes or edit their names/paths. The optional `keyhint` references `/usr/share/endeavouros/scripts/eos-script-lib-yad`, which was not copied. Its `keyhint-2` sibling uses Rofi instead.
-5. Keep weather credentials outside Git. `openweather` contains placeholders and reads `~/.config/openweather/config` or environment variables; that private configuration was not collected.
-
-`import-gsettings` is retained among the helpers but is not called by the current i3 configuration. It changes GNOME interface preferences when run; leave it unused to preserve GNOME settings.
-
-## Restore manually
-
-First back up any existing destination files outside this repository. Review the target-specific edits above. From the repository root, copy only the components you intend to restore; the following commands overwrite matching destination files and do not delete unrelated files:
+Run from this repository's root; these commands overwrite matching destination files.
 
 ```sh
 mkdir -p "$HOME/.config" "$HOME/.local/share/rofi/themes" \
-  "$HOME/.screenlayout" "$HOME/Pictures/Wallpapers"
+  "$HOME/.screenlayout" "$HOME/Pictures/Wallpapers" \
+  "$HOME/.config/gtk-3.0" "$HOME/.config/terminator"
 cp -a config/i3 config/polybar config/rofi config/dunst "$HOME/.config/"
+cp -a config/gtk-3.0/settings.ini "$HOME/.config/gtk-3.0/settings.ini"
+cp -a config/terminator/config "$HOME/.config/terminator/config"
 cp -a local/share/rofi/themes/. "$HOME/.local/share/rofi/themes/"
 cp -a screenlayout/monitors.sh "$HOME/.screenlayout/monitors.sh"
 cp -a home/.fehbg home/.Xresources "$HOME/"
 cp -a assets/wallpaper.jpg "$HOME/Pictures/Wallpapers/wallpaper.jpg"
+chmod +x "$HOME/.fehbg" "$HOME/.screenlayout/monitors.sh" \
+  "$HOME/.config/polybar/launch.sh" "$HOME/.config/polybar/network.sh" \
+  "$HOME/.config/i3/scripts/lock.sh" "$HOME/.config/i3/scripts/blur-lock" \
+  "$HOME/.config/i3/scripts/mouse-settings.sh" "$HOME/.config/i3/scripts/powermenu"
 ```
 
-Optionally copy GTK3 and Terminator settings to the destinations in the table. Leave `archive/` inactive unless intentionally restoring i3blocks. Check the installed i3 syntax with `i3 -C -c "$HOME/.config/i3/config"`. Log into the i3 X11 session to apply startup commands; an i3 reload does not rerun all `exec` lines. GNOME can remain available as a separate login session.
+Replace the original username in installed paths.
 
-## Review and Git
+```sh
+python3 - <<'PYTHON'
+from pathlib import Path
+home = Path.home()
+for name in ['.fehbg', '.config/polybar/config.ini', '.config/polybar/spacegray.ini']:
+    path = home / name
+    path.write_text(path.read_text().replace('/home/vano-iniashvili', str(home)))
+PYTHON
+```
 
-Every copied file was compared byte-for-byte and by mode against its source. A text review found no embedded credentials; absolute home paths and upstream author credits remain. This collection was not activated or tested as a fresh desktop installation.
+## 3. Configure monitors
 
-The scripts/themes retain upstream notices, including EndeavourOS sources and GPL notices. See [EndeavourOS i3 setup](https://github.com/endeavouros-team/endeavouros-i3wm-setup), [audio-device-switch](https://gist.github.com/kbravh/1117a974f89cc53664e55823a55ac320), [volume/brightness indicator](https://gitlab.com/Nmoleo/i3-volume-brightness-indicator), and [i3blocks-contrib](https://github.com/vivien/i3blocks-contrib). Wallpaper and lock-image provenance is not recorded; confirm redistribution rights before publishing them. No blanket license has been assigned to third-party content.
+Run in an X11 session and use the reported output names, resolutions and rates.
 
-When ready, initialize Git here if needed, inspect `git status --short` and `git diff --cached`, then make the first commit. The collection process has not initialized, staged, committed, or pushed a repository.
+```sh
+xrandr --query
+nano "$HOME/.screenlayout/monitors.sh"
+```
+
+Single-monitor example for the contents of `~/.screenlayout/monitors.sh`:
+
+```sh
+#!/bin/sh
+xrandr --output HDMI-1 --mode 1920x1080 --rate 60 --pos 0x0 --rotate normal
+```
+
+Two-monitor example:
+
+```sh
+#!/bin/sh
+xrandr --output HDMI-1 --mode 1920x1080 --rate 60 --pos 0x0 --rotate normal \
+  --output DP-1 --mode 1920x1080 --rate 60 --pos 1920x0 --rotate normal
+```
+
+Save the same output names in all three locations.
+
+| File | Set |
+| --- | --- |
+| `~/.screenlayout/monitors.sh` | Outputs, positions, modes, refresh rates |
+| `~/.config/polybar/launch.sh` | `MONITOR="HDMI-1"` (chosen bar display) |
+| `~/.config/i3/config` | Rofi `-monitor HDMI-1` and `workspace N output NAME` lines |
+
+Original layout: HDMI-1-0 top-left, DVI-D-1-0 top-right, DP-2 bottom-left, HDMI-3 bottom-right; all 1080p, DP-2 at 60 Hz, others 74.97 Hz, right-column X position 1925.
+
+## 4. Configure mouse
+
+Choose the actual mouse interface and inspect its properties.
+
+```sh
+xinput list
+mouse_name='YOUR EXACT MOUSE DEVICE NAME'
+xinput list-props "$mouse_name"
+xinput set-prop "$mouse_name" 'libinput Accel Speed' -0.5
+xinput set-prop "$mouse_name" 'libinput Natural Scrolling Enabled' 0
+# Adaptive acceleration (three-value property)
+xinput set-prop "$mouse_name" 'libinput Accel Profile Enabled' 1 0 0
+# Flat acceleration instead
+# xinput set-prop "$mouse_name" 'libinput Accel Profile Enabled' 0 1 0
+```
+
+Speed ranges from -1 (slow) to 1 (fast); scrolling uses 0 (normal)/1 (natural); older two-value profiles use `1 0` (adaptive)/`0 1` (flat).
+
+Save the chosen device name, speed, supported profile and scrolling values in the startup script.
+
+```sh
+nano "$HOME/.config/i3/scripts/mouse-settings.sh"
+sh "$HOME/.config/i3/scripts/mouse-settings.sh"
+```
+
+## 5. Configure keyboard and appearance
+
+Edit the installed files to save settings for this computer.
+
+| Setting | File / original value |
+| --- | --- |
+| Keyboard | `~/.config/i3/config`: `us,ge`, `grp:win_space_toggle` |
+| Modifier | `~/.config/i3/config`: `set $mod Mod1` (Alt) |
+| Window font/borders/gaps | `~/.config/i3/config`: Noto Sans 10, borders 1, inner gaps 6, outer gaps 3 |
+| DPI/cursor | `~/.Xresources`: DPI 84, cursor Adwaita 24 |
+| Bar | `~/.config/polybar/spacegray.ini`: fonts, colors, height 20, modules |
+| Rofi | `~/.config/rofi/config.rasi`, `~/.local/share/rofi/themes/` |
+| Power menu | `~/.config/rofi/powermenu.rasi`: northeast, offsets -10/28 px |
+| Notifications | `~/.config/dunst/dunstrc`: font, colors, Qogir icon paths |
+| GTK | `~/.config/gtk-3.0/settings.ini`: Arc-Dark/Papirus-Dark; keep one `gtk-font-name` entry |
+| Terminal | `~/.config/terminator/config` |
+| Wallpaper | `~/Pictures/Wallpapers/wallpaper.jpg`, `~/.fehbg` |
+| Custom lock | `~/.config/i3/scripts/lock.sh`, `~/.config/i3/lockscreen/blurred.png`; inactivity 10 seconds |
+
+Apply settings in the current X11 session.
+
+```sh
+setxkbmap -layout 'us,ge' -option 'grp:win_space_toggle'
+xrdb -merge "$HOME/.Xresources"
+sh "$HOME/.screenlayout/monitors.sh"
+sh "$HOME/.fehbg"
+```
+
+## 6. First login and keyboard
+
+Copy the configuration before the first i3 login to skip its Enter/Esc configuration wizard.
+
+```sh
+i3 -C -c "$HOME/.config/i3/config"
+```
+
+**Log out → select your user → session/gear menu → i3 → log in**; repeat a full logout/login after changing startup commands.
+
+Open a terminal with **Alt + Enter** or the launcher with **Alt + D**; if the wizard appears, return to your previous desktop and check `~/.config/i3/config`.
+
+Physical keyboard support comes from `xserver-xorg-input-libinput`; for a clickable [on-screen keyboard](https://packages.ubuntu.com/onboard), install Onboard before switching sessions and add its startup line after copying the config.
+
+```sh
+sudo apt install onboard
+printf '\nexec --no-startup-id onboard\n' >> "$HOME/.config/i3/config"
+```
+
+Onboard opens after i3 starts; it does not replace the login screen's own accessibility keyboard.
+
+## Shortcuts
+
+Alt is `$mod`; Super is the Windows/logo key; H/J/K/L mean left/down/up/right.
+
+| Shortcut | Action |
+| --- | --- |
+| Alt + Enter | Open Terminator |
+| Alt + D | Open Rofi application launcher |
+| Alt + Shift + Q | Close focused window |
+| Alt + H/J/K/L | Focus window left/down/up/right |
+| Alt + arrow key | Focus window in that direction |
+| Alt + semicolon | Focus right |
+| Alt + Shift + H/J/K/L | Move window left/down/up/right |
+| Alt + Shift + arrow key | Move window in that direction |
+| Alt + Shift + semicolon | Move window right |
+| Alt + Ctrl + H/J/K/L | Focus monitor left/down/up/right |
+| Alt + Ctrl + Shift + H/J/K/L | Move focused window to another monitor |
+| Alt + V | Set vertical split for subsequent windows |
+| Alt + slash | Toggle split orientation |
+| Alt + F | Toggle fullscreen |
+| Alt + S or Alt + comma | Stacked layout |
+| Alt + W | Tabbed layout |
+| Alt + E | Toggle split layout |
+| Alt + Shift + Space | Toggle focused window floating/tiling |
+| Alt + Space | Switch focus between floating and tiling windows |
+| Alt + A | Focus parent container |
+| Alt + minus | Shrink width, configured as 50 px or 5 percentage points |
+| Alt + equals | Grow width, configured as 50 px or 5 percentage points |
+| Alt + R | Enter resize mode (see below) |
+| Alt + Shift + C | Reload config; also relaunches Polybar via `exec_always` |
+| Alt + Shift + R | Restart i3 in place |
+| Alt + Shift + E | Show confirmation to exit i3/logout |
+| Super + H | Hide focused window in scratchpad |
+| Super + Shift + H | Open hidden-window picker; choose a window and press Enter |
+| Super + L | Run custom lock screen |
+| Super + Shift + S | Select screenshot region using Flameshot |
+| Super + Space | Switch US/Georgian keyboard layout |
+| Volume up/down keys | Change default output volume by 10% |
+| Speaker mute key | Toggle default output mute |
+| Microphone mute key | Toggle default microphone mute |
+| Alt + left mouse drag | Move floating windows; drag tiling windows to rearrange |
+| Alt + right mouse drag | Resize floating windows |
+
+Resize mode: H/Left shrinks width, L/Right grows width, J/Down grows height, K/Up shrinks height (10 px or 10 percentage points); Enter/Esc/Alt + R exits.
+
+Polybar: click the launcher, a hidden-window label to restore it, or the power icon; Rofi uses typing/arrows/Enter/Esc.
+
+## Workspace keys (optional)
+
+Number shortcuts are absent by default; append these to `~/.config/i3/config` for Alt + 1–4 switching and Alt + Shift + 1–4 moving windows.
+
+```i3
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+```
+
+## Useful commands
+
+Run inside i3 after saving edits.
+
+```sh
+i3-msg reload
+"$HOME/.config/polybar/launch.sh"
+tail -n 50 "$HOME/.config/polybar/polybar.log"
+i3-msg 'workspace number 1'
+i3-msg 'move container to workspace number 2'
+python3 "$HOME/.config/polybar/scratchpad.py" menu
+"$HOME/.config/i3/scripts/powermenu"
+pactl set-sink-volume @DEFAULT_SINK@ 50%
+pactl set-sink-mute @DEFAULT_SINK@ toggle
+```
+
+Power-menu locking uses `blur-lock`; to match Super + L, prefer `"${HOME}/.config/i3/scripts/lock.sh"` in `LOCK_SCRIPTS` inside `~/.config/i3/scripts/powermenu`; suspend uses `xss-lock -- i3lock --nofork`.
+
+## Optional legacy helpers
+
+Install only when using the archived i3blocks configuration or extra helper scripts.
+
+```sh
+sudo apt install i3blocks sysstat lm-sensors acpi pavucontrol brightnessctl \
+  libnotify-bin power-profiles-daemon curl jq yad perl iproute2
+```
+
+`keyhint` requires an EndeavourOS library; use `keyhint-2` for Rofi instead; keep weather credentials outside Git and leave `import-gsettings` unused to preserve GNOME preferences.
+
+## Collection and credits
+
+`collection-manifest.json` records original paths, permissions and SHA-256 hashes for 46 copied files; `archive/` contains inactive i3blocks settings.
+
+Preserve upstream licenses/notices and verify image-sharing rights: [EndeavourOS](https://github.com/endeavouros-team/endeavouros-i3wm-setup), [audio switcher](https://gist.github.com/kbravh/1117a974f89cc53664e55823a55ac320), [volume/brightness](https://gitlab.com/Nmoleo/i3-volume-brightness-indicator), [i3blocks-contrib](https://github.com/vivien/i3blocks-contrib).
+
+Reference: [i3 manual](https://i3wm.org/docs/userguide.html), [libinput properties](https://cgit.freedesktop.org/xorg/driver/xf86-input-libinput/tree/man/libinput.man).
