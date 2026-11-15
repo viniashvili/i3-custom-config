@@ -1,0 +1,30 @@
+# Local agent/tool state
+.agents/
+.aws/
+.codex/
+
+# Runtime output and generated files
+*.log
+*.pid
+*.lock
+__pycache__/
+*.py[cod]
+.cache/
+.DS_Store
+
+# Accidental editor/config backups
+*~
+*.bak
+*.backup*
+*.before-*
+*.swp
+*.swo
+
+# Local credentials and restore backups
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+restore-backups/
+config/openweather/

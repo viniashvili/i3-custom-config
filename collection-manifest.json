@@ -1,0 +1,281 @@
+{
+  "collected_on": "2026-11-15",
+  "files": [
+    {
+      "source": "~/.config/i3/config",
+      "path": "config/i3/config",
+      "sha256": "d10cf9e5aa3d5ebd878fa8c917a0108e337abe16ab93b30bdf0176506a15ec4f",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.config/i3/scripts/audio-device-switch",
+      "path": "config/i3/scripts/audio-device-switch",
+      "sha256": "3d64d2e2c801d7f099a70d22c9f7ef7c17bd8c6fbb73c55608396ba663184fb2",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/bandwidth2",
+      "path": "config/i3/scripts/bandwidth2",
+      "sha256": "18259c311b82c669f7b6cc172122c4c7806de41e27fa776e1a1eab84a93fbbb9",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/battery",
+      "path": "config/i3/scripts/battery",
+      "sha256": "9088daabc1da4ec81558b2794e30ac540b8eabcc9c7af31034a037248c6af786",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/battery-pinebook-pro",
+      "path": "config/i3/scripts/battery-pinebook-pro",
+      "sha256": "88532c2de4c7f6b16c5be300abd8936d5aa669200bf096406516b0fe400bbe68",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/blur-lock",
+      "path": "config/i3/scripts/blur-lock",
+      "sha256": "d4de07da1102efc9d8ec6c56896a43e5404ef35a5e9638855afdec9a58227301",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/cpu_usage",
+      "path": "config/i3/scripts/cpu_usage",
+      "sha256": "7ce56c66d265f693e31015a2a995277a59cb8a863043e1f48449a7d23a686206",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/cputemp",
+      "path": "config/i3/scripts/cputemp",
+      "sha256": "5334bddb81bdc10dc451e2470d816fbd6f97078c93dce0ea9276236957f5c329",
+      "mode": "0o775"
+    },
+    {
+      "source": "~/.config/i3/scripts/disk",
+      "path": "config/i3/scripts/disk",
+      "sha256": "b146c898497d288f3e04f4d5427ee05c4f6c48740a5f6a60b3939afc501b5755",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/empty_workspace",
+      "path": "config/i3/scripts/empty_workspace",
+      "sha256": "8fdd150405833a00e1085cd0fb3ff810aed85616fdbd28039191229e01cc32ae",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/gputemp",
+      "path": "config/i3/scripts/gputemp",
+      "sha256": "08a5103f3e35f6839dd1e81f19c783a302b179ef1b27d041ed535ff7a3ff6cd2",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/import-gsettings",
+      "path": "config/i3/scripts/import-gsettings",
+      "sha256": "4a9e29c123979977d7e758d946cbbe5a04129b0718cb20ec4735387f9d9e1b3d",
+      "mode": "0o775"
+    },
+    {
+      "source": "~/.config/i3/scripts/keyhint",
+      "path": "config/i3/scripts/keyhint",
+      "sha256": "38c8f71c55eb465411c311301edd54f4a1ebbb34dcd972121bb591a3ad01582e",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/keyhint-2",
+      "path": "config/i3/scripts/keyhint-2",
+      "sha256": "08f2bfc7747343df9cc3bc9b7fd63f4aa30f5e2bc0089a290f7e3b918d9b4bb8",
+      "mode": "0o775"
+    },
+    {
+      "source": "~/.config/i3/scripts/lock.sh",
+      "path": "config/i3/scripts/lock.sh",
+      "sha256": "a07c40a49d76d9407e0501e0221ad8cbe1bbc1db782b94cd393a10a45f159ee4",
+      "mode": "0o775"
+    },
+    {
+      "source": "~/.config/i3/scripts/memory",
+      "path": "config/i3/scripts/memory",
+      "sha256": "bb1a4c05cdfb169f5bf0d369f7603300d26c11d00a1e33bddcabf3be0433480b",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/mouse-settings.sh",
+      "path": "config/i3/scripts/mouse-settings.sh",
+      "sha256": "d914724da0c7afb805811e5833b0a8187837f9bccae4de767105595ff9d36c15",
+      "mode": "0o755"
+    },
+    {
+      "source": "~/.config/i3/scripts/openweather",
+      "path": "config/i3/scripts/openweather",
+      "sha256": "56a6aea4e383cdd30945a1537b689dbbdccb40e0c5c7edf611657585e63ce179",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/power-profiles",
+      "path": "config/i3/scripts/power-profiles",
+      "sha256": "225ef6ac838f485b85726292b30675b72724ee80950c28d3a8002855e0b29016",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/powermenu",
+      "path": "config/i3/scripts/powermenu",
+      "sha256": "407b40c22cfd62b30d9b2f17792e8a51a581078fd5a8527cd261209dad5a38ad",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/ppd-status",
+      "path": "config/i3/scripts/ppd-status",
+      "sha256": "1a66b85774e9a535ad0f16f22f72d6cde68c4ca094c8929d5781d7377d1b4a53",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/temperature",
+      "path": "config/i3/scripts/temperature",
+      "sha256": "3cf8682aa63bb8bb180ce6c7cd29c5334e5953a7bb68fd846501a3067c2dd27d",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/volume",
+      "path": "config/i3/scripts/volume",
+      "sha256": "6dc0f5af124de8c4b0a09672189e2035f12be47f3cdeb879d16f79aa5e3d8352",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/volume_brightness.sh",
+      "path": "config/i3/scripts/volume_brightness.sh",
+      "sha256": "9d36b47dcb47a2bdfde13035cdaf7b041298c6df0eab91c2847f04524dc89ab5",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/scripts/volume_brightness2.sh",
+      "path": "config/i3/scripts/volume_brightness2.sh",
+      "sha256": "22063b42d9969cfe8b9c872e54f8af577d5fca3d95bfb747433ff8cfb86863e9",
+      "mode": "0o775"
+    },
+    {
+      "source": "~/.config/i3/scripts/vpn",
+      "path": "config/i3/scripts/vpn",
+      "sha256": "683dfdb08632b0f895ab1379b85e70a895be341e2c59b6abdc24b01e22a5efc0",
+      "mode": "0o764"
+    },
+    {
+      "source": "~/.config/i3/lockscreen/blurred.png",
+      "path": "config/i3/lockscreen/blurred.png",
+      "sha256": "9a1dca6bb7edc44370da413389911c38d54c9247d2d0922087ead53dab23bf32",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.config/polybar/launch.sh",
+      "path": "config/polybar/launch.sh",
+      "sha256": "bbf9e20d34fb90d4b5a9bf425af8a0924d7d57d1f60c9813bd551f212d786aac",
+      "mode": "0o755"
+    },
+    {
+      "source": "~/.config/polybar/spacegray.ini",
+      "path": "config/polybar/spacegray.ini",
+      "sha256": "e88c6d4088f22d65a08205dd16c92d081fce2187e7e0a98739ecab2c0fa1a81b",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.config/polybar/config.ini",
+      "path": "config/polybar/config.ini",
+      "sha256": "836c43cb64f5581487d8e93cc98750cd3f60d71704832cbea234d34a96f6472d",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.config/polybar/scratchpad.py",
+      "path": "config/polybar/scratchpad.py",
+      "sha256": "80e2519b67580448a54332f95a94525377825e15f559d9fa38e8b88fbbee2a1a",
+      "mode": "0o755"
+    },
+    {
+      "source": "~/.config/polybar/network.sh",
+      "path": "config/polybar/network.sh",
+      "sha256": "0c06b9a0b764c1d5f7c2126988d17ec3c9b0a1412883ea06c8d4b0ed4d5530c8",
+      "mode": "0o755"
+    },
+    {
+      "source": "~/.config/rofi/config.rasi",
+      "path": "config/rofi/config.rasi",
+      "sha256": "8420ff57d9ee66632d2303060fa3e01ef477588e261ff24bc993252ac0f8820f",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.config/rofi/power-profiles.rasi",
+      "path": "config/rofi/power-profiles.rasi",
+      "sha256": "2e5f1c96aa10ab3df3342ecf5c57c51d9b5cb07d5e97b051ce6433ff1a4fe814",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.config/rofi/powermenu.rasi",
+      "path": "config/rofi/powermenu.rasi",
+      "sha256": "e00cafa887aac7004a3213f30d21644074b859bcd8fee44fe337c9aa44979651",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.config/rofi/rofidmenu.rasi",
+      "path": "config/rofi/rofidmenu.rasi",
+      "sha256": "8250a074e8aae68741b71cfafcbcd4838286d23130eec23c502eafc0a4e5aeaa",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.config/rofi/rofikeyhint.rasi",
+      "path": "config/rofi/rofikeyhint.rasi",
+      "sha256": "5f96ec1cf6848e40dc184a1385a3b81c935266d7217ad0f14e25ffed669b9bab",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.local/share/rofi/themes/arc_dark_transparent_colors.rasi",
+      "path": "local/share/rofi/themes/arc_dark_transparent_colors.rasi",
+      "sha256": "d752d3a88f5d1c7eb37edb9f9d1acddc5fe6c69342a228802f02bbcf424ea063",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.screenlayout/monitors.sh",
+      "path": "screenlayout/monitors.sh",
+      "sha256": "2c9419eb37980d255ea4f1520c673fe0ccc9f9a0224e7d99dfbb1899fd304f79",
+      "mode": "0o700"
+    },
+    {
+      "source": "~/.fehbg",
+      "path": "home/.fehbg",
+      "sha256": "c700ddbb1008753fd0a090104b4e82e131716792f2f8dad2c71ad3d735a45e84",
+      "mode": "0o774"
+    },
+    {
+      "source": "~/.Xresources",
+      "path": "home/.Xresources",
+      "sha256": "8d1021ef68fa31032e1acfa382b1db59945cddcfa4de1d3a7d12d5f6c71c0f63",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/Pictures/Wallpapers/wallpaper.jpg",
+      "path": "assets/wallpaper.jpg",
+      "sha256": "0a00275d31ab52de715bca92b42a2eb2ade48973589c05c2ee64f4eefd03e4e6",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.config/dunst/dunstrc",
+      "path": "config/dunst/dunstrc",
+      "sha256": "4b0c98c50496ef25e7038f97ce775a8048e53a78ed026eaf387b07040fa01766",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.config/gtk-3.0/settings.ini",
+      "path": "config/gtk-3.0/settings.ini",
+      "sha256": "218b59d16b88e326472faa82e99d0a48750af9b6fd0f62ed31f590a8b219d711",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.config/terminator/config",
+      "path": "config/terminator/config",
+      "sha256": "3c7aaa335307f0b91221db68bb061fea195c46431c697235d4c4b3dccfa414f3",
+      "mode": "0o664"
+    },
+    {
+      "source": "~/.config/i3/i3blocks.conf",
+      "path": "archive/i3/i3blocks.conf",
+      "sha256": "6a7eb73475a90554d9620145b670677e504dbb5179c88eeed8fdd54ab8eaacac",
+      "mode": "0o664"
+    }
+  ]
+}

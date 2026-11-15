@@ -1,0 +1,31 @@
+[global_config]
+[keybindings]
+[profiles]
+  [[default]]
+    background_darkness = 1.0
+    foreground_color = "#CCCCCC"
+    show_titlebar = False
+    palette = "#000000:#999999:#BBBBBB:#DDDDDD:#888888:#AAAAAA:#CCCCCC:#FFFFFF:#333333:#BBBBBB:#DDDDDD:#FFFFFF:#AAAAAA:#CCCCCC:#EEEEEE:#FFFFFF"
+  [[All-Nighter]]
+    background_color = "#1e1c24"
+    background_darkness = 1.0
+    foreground_color = "#cbc7bd"
+    show_titlebar = False
+    palette = "#302d38:#cc9293:#a2b693:#c8ad82:#9daaca:#b6a0c5:#94b8b2:#bab8b2:#918a9a:#e0acab:#b9caa9:#ddc49b:#b6c1df:#ccb8d8:#afcfc8:#e4dfd3"
+  [[Classic]]
+    background_color = "#282828"
+    background_darkness = 1.0
+    background_type = transparent
+    foreground_color = "#ebdbb2"
+    show_titlebar = False
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+[plugins]
